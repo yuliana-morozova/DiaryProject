@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DiaryProject.Validation; 
 
 namespace DiaryProject.Models
 {
@@ -8,6 +9,8 @@ namespace DiaryProject.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Заголовок є обов'язковим")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Заголовок має бути від 3 до 100 символів")]
+        [NoSpamWord("спам", ErrorMessage = "Заголовок не повинен містити слово 'спам'")] 
         [Display(Name = "Заголовок")]
         public string? Title { get; set; }
 

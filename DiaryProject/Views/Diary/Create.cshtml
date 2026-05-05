@@ -1,0 +1,48 @@
+﻿@model DiaryProject.Models.DiaryEntry
+
+@{
+    ViewData["Title"] = "Новий запис";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0 bg-white">
+                <div class="card-header bg-white border-bottom pb-2 pt-3">
+                    <h3 class="text-dark">Новий запис</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label text-secondary fw-bold"></label>
+                            <input asp-for="Title" class="form-control bg-light border-0" placeholder="Введіть заголовок..." />
+                            
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Content" class="form-label text-secondary fw-bold"></label>
+                            <textarea asp-for="Content" class="form-control bg-light border-0" rows="6" placeholder="Що сталося сьогодні?"></textarea>
+                            <span asp-validation-for="Content" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">⬅ Назад до списку</a>
+                            <button type="submit" class="btn btn-dark shadow-sm">💾 Зберегти запис</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
